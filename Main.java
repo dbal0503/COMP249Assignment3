@@ -55,7 +55,37 @@ public class Main {
 
 
     public static void main(String[] args){
-        BufferedReader br = null;
+        File file= new File("2008.txt");
+        file.delete();
+
+        BookList bkLst = new BookList();
+        ArrayList<Book> arrLst = new ArrayList<Book>();
+        Object[] objects = collect(bkLst, arrLst);
+        bkLst = (BookList) objects[0];
+        arrLst = (ArrayList<Book>) objects[1];
+
+        for (int i =0; i < arrLst.size(); i++){
+            System.out.println(arrLst.get(i).toString());
+        }
+        bkLst.show();
+        bkLst.storeRecordsByYear(2008);
+        Book booktoinsert = new Book("The Dark Road", "Jimin S.", 25.92, 1239009879, "FCN", 2019);
+        long longISBN = 97807864121l;
+        long longISBN2 = 97807862907l;
+        System.out.println(bkLst.insertBetween(longISBN, longISBN2, booktoinsert));
+        //System.out.println(bkLst.insertBefore(807863614, booktoinsert));
+        bkLst.show();
+
+        float fol = 10f;
+        long lol = 10l;
+
+
+
+
+
+
+
+
         ArrayList<Book> incorrectBooks;
 
 
