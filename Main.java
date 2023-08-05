@@ -79,5 +79,8 @@ public class Main {
         float fol = 10f;
         long lol = 10l;
 
+
+
+        int dingdong = 27;
     }
     }
