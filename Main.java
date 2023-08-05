@@ -6,41 +6,59 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    public ArrayList<Book> collect(BufferedReader br)throws IOException, FileNotFoundException {
+
+
+    public static Book createBookfromString(String[] temp){
+        for (int i =0; i<temp.length; i++){
+            temp[i] = temp[i].trim();
+        }
+        return new Book(temp[0],temp[1],Double.parseDouble(temp[2]),Long.parseLong(temp[3]),temp[4],Integer.parseInt(temp[5]));
+    }
+
+
+    public static Object[] collect(BookList bkLst,ArrayList<Book> arrLst ) {
         String[] temp;
         Book aBook;
-        ArrayList<Book> books= new ArrayList<>();
-        File errors = new File("BookErrors.txt");
-        PrintWriter pr = new PrintWriter(errors);
-        while (br.readLine()!=null){
-            temp = br.readLine().split(",");
+        Object[] objects = new Object[2];
+        try {
+            Scanner read = new Scanner(new FileInputStream("Books.txt"));
 
-            if (temp.length == 6){
-                for (int i =0; i<temp.length; i++){
-                    temp[i] = temp[i].trim();
+
+            while (read.hasNextLine()) {
+                temp = read.nextLine().split(",");
+                for (int i =0; i< temp.length; i++){
+                    System.out.println(temp[i]);
                 }
-                aBook = new Book(temp[0],temp[1],Double.parseDouble(temp[2]),Long.parseLong(temp[3]),temp[4],Integer.parseInt(temp[5]));
-                books.add(aBook);
-            }
-            else {
-                pr.write(br.readLine());
+
+                if ((Integer.parseInt(temp[5].trim()) > 1900) && (Integer.parseInt(temp[5].trim()) < 2023)) {
+
+                    bkLst.addToStart(createBookfromString(temp));
+
+                } else {
+
+
+                    arrLst.add(createBookfromString(temp));
+                }
+
             }
 
+            read.close();
         }
-        return books;
+             catch (IOException ioException){
+            System.out.println(ioException.getMessage());
+        }
+        objects[0] = bkLst;
+        objects[1] = arrLst;
+        return objects;
     }
+
 
 
     public static void main(String[] args){
         BufferedReader br = null;
         ArrayList<Book> incorrectBooks;
 
-        try {
-            br = new BufferedReader(new FileReader("Books.txt"));
-        }
-        catch (IOException e){
-            System.out.println(e.getMessage());
-        }
+
 
 
 

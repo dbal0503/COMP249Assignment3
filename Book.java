@@ -14,6 +14,7 @@ public class Book {
         this.author = author;
         this.price = price;
         this.ISBN = ISBN;
+        this.genre = genre;
         this.year = year;
 
     }
@@ -67,6 +68,18 @@ public class Book {
 
     public int getYear() {
         return year;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", price=" + price +
+                ", ISBN=" + ISBN +
+                ", genre='" + genre + '\'' +
+                ", year=" + year +
+                '}';
     }
 
     public void setYear(int year) {
