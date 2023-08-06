@@ -63,24 +63,40 @@ public class Main {
         Object[] objects = collect(bkLst, arrLst);
         bkLst = (BookList) objects[0];
         arrLst = (ArrayList<Book>) objects[1];
-
+/*
         for (int i = 0; i < arrLst.size(); i++) {
             System.out.println(arrLst.get(i).toString());
         }
-        bkLst.show();
-        bkLst.storeRecordsByYear(2008);
+
+ */
+       // bkLst.show();
+      //  bkLst.storeRecordsByYear(2008);
         Book booktoinsert = new Book("The Dark Road", "Jimin S.", 25.92, 1239009879, "FCN", 2019);
         long longISBN = 97807864121l;
-        long longISBN2 = 97807862907l;
-        System.out.println(bkLst.insertBetween(longISBN, longISBN2, booktoinsert));
+        long longISBN2 = 879109858l;
+       // System.out.println(bkLst.insertBetween(longISBN, longISBN2, booktoinsert));
         //System.out.println(bkLst.insertBefore(807863614, booktoinsert));
+        System.out.println("default list: ");
         bkLst.show();
 
-        float fol = 10f;
-        long lol = 10l;
+        System.out.println("Next method");
+
+        /*
+       bkLst.delConsecutiveRepeatedRecords();
+        bkLst.show();
+        */
+        /*
+        System.out.println("Using the extracting author method and printing it:");
+        bkLst.extractAuthList("Mark W. Schraf").show();
+        */
+
+
+        long longswap1 = 97808798254l; //jazz
+        long longswap2 = 97808709268l; //he ran
+        System.out.println(bkLst.swap(longswap1, longswap2));
+        bkLst.show();
 
 
 
-        int dingdong = 27;
     }
     }

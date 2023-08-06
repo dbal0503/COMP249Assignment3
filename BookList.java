@@ -147,6 +147,83 @@ public class BookList {
         return false;
     }
 
+    public boolean delConsecutiveRepeatedRecords(){
+        Node temp = head;
+        while(temp.next != head){
+
+            if(temp.next.b.getISBN() == temp.next.next.b.getISBN()){
+                temp.next = temp.next.next;
+                delConsecutiveRepeatedRecords();
+                return true;
+            }
+                temp = temp.next;
+
+        }
+        return false;
+    }
+
+    public BookList extractAuthList(String aut){
+        BookList authLst = new BookList();
+        Node temp = head;
+
+        while (temp.next != head){
+            if (temp.b.getAuthor().equals(aut)){
+                authLst.addToStart(temp.b);
+            }
+            temp = temp.next;
+        }
+        if (temp.b.getAuthor() == aut){
+            authLst.addToStart(temp.b);
+        }
+
+        return authLst;
+    }
+    public Node getnode(int integer){
+        Node temp = head;
+        for (int i=0; i<integer; i++){
+            temp = temp.next;
+        }
+        return temp;
+    }
+
+    public boolean swap(long isbn1, long isbn2) {
+        Node temp = head;
+        boolean check =false;
+        Node node1 = null;
+        Node swap1 = null;
+        Node node2 = null;
+        Node swap2 =null;
+
+        while (temp.next != head) {
+            if (temp.next.b.getISBN() == isbn1) {
+                System.out.println("cc");
+                node1 = temp;
+                swap1 = temp.next;
+            }
+            if (temp.next.b.getISBN() == isbn2) {
+                System.out.println("bb");
+                node2 = temp;
+                swap2 = temp.next;
+            }
+            if ((node1 != null) && (node2 != null)) {
+                check = true;
+                System.out.println("aa");
+                break;
+            }
+            temp = temp.next;
+        }
+
+        Book b1Temp  = new Book(swap1.b);
+        Book b2Temp = new Book(swap2.b);
+        swap1.b= b2Temp;
+        swap2.b = b1Temp;
+
+        return check;
+    }
+
+
+
+
 
     private class Node {
         private Book b;
